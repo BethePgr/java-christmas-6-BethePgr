@@ -27,4 +27,12 @@ public class OutputView {
         System.out.println(convertAmount(price) + "원");
     }
 
+    public static void printGiftEvent(boolean giftEventExist) {
+        if (giftEventExist) {
+            System.out.println("샴페인 1개");
+        }
+        if (!giftEventExist) {
+            System.out.println("없음");
+        }
+    }
 }
