@@ -30,6 +30,7 @@ public class OutputView {
     }
 
     public static void printGiftEvent(boolean giftEventExist) {
+        System.out.println("<증정 메뉴>");
         if (giftEventExist) {
             System.out.println("샴페인 1개");
         }
