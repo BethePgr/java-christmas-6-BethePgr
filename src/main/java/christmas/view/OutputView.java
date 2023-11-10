@@ -33,12 +33,13 @@ public class OutputView {
         if (giftEventExist) {
             System.out.println("샴페인 1개");
         }
-        if (!giftEventExist) {
-            System.out.println("없음");
-        }
+        System.out.println("없음");
     }
 
     public static void printEvents(Map<Event, Integer> eventMap) {
+        if (eventMap.size() == 0) {
+            System.out.println("없음");
+        }
         for (Event event : eventMap.keySet()) {
             System.out.println(event.getName() + ": -" + convertAmount(eventMap.get(event)) + "원");
         }
@@ -46,6 +47,9 @@ public class OutputView {
 
     public static void printDiscount(int price) {
         System.out.println("<총혜택 금액>");
+        if (price == 0) {
+            System.out.println("0원");
+        }
         System.out.println("-" + convertAmount(price) + "원");
     }
 
