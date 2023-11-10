@@ -2,6 +2,7 @@ package christmas.domain;
 
 import static christmas.domain.Event.D_DAY_EVENT;
 import static christmas.domain.Event.GIFT_EVENT;
+import static christmas.domain.Event.SPECIAL_EVENT;
 import static christmas.domain.Event.WEEKDAY_EVENT;
 import static christmas.domain.Menu.CHAMPAGNE;
 
@@ -54,6 +55,12 @@ public class ChristmasEvent {
     public void checkWeekendEvent(int day) {
         if (WEEKEND.contains(day)) {
             eventMap.put(WEEKDAY_EVENT, 2023 * countMain());
+        }
+    }
+
+    public void checkSpecialEvent(int day) {
+        if (SPECIAL_DAY.contains(day)) {
+            eventMap.put(SPECIAL_EVENT, 1000);
         }
     }
 
