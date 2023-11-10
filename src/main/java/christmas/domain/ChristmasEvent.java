@@ -51,7 +51,17 @@ public class ChristmasEvent {
         }
     }
 
+    public void checkWeekendEvent(int day) {
+        if (WEEKEND.contains(day)) {
+            eventMap.put(WEEKDAY_EVENT, 2023 * countMain());
+        }
+    }
+
     private int countDessert() {
         return (int) menuMap.keySet().stream().filter(menu -> menu.getType() == Type.DESSERT).count();
+    }
+
+    private int countMain() {
+        return (int) menuMap.keySet().stream().filter(menu -> menu.getType() == Type.MAIN).count();
     }
 }
