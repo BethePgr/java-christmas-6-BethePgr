@@ -37,6 +37,7 @@ public class OutputView {
     }
 
     public static void printEvents(Map<Event, Integer> eventMap) {
+        System.out.println("<혜택 내역>");
         if (eventMap.size() == 0) {
             System.out.println("없음");
         }
