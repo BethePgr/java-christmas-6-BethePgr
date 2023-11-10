@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.util.Convert.convertAmount;
+
 import christmas.domain.Menu;
 import java.util.Map;
 
@@ -19,4 +21,10 @@ public class OutputView {
             System.out.println(menu.getName() + menuMap.get(menu) + "개");
         }
     }
+
+    public static void printBeforeEventPrice(int price) {
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(convertAmount(price) + "원");
+    }
+
 }
