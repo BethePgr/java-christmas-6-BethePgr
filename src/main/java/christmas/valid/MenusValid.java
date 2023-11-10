@@ -5,20 +5,21 @@ import static christmas.domain.Type.DRINK;
 import static christmas.domain.Type.findTypeByMenuName;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenusValid {
 
     public static void validMenus(String input) {
         List<String> menuNames = new ArrayList<>();
-        String[] menus = input.split(",");
+        List<String> menus = Arrays.asList(input.split(","));
         int allQuantity = 0;
         for (String menu : menus) {
-            String[] menuOptions = menu.split("-");
+            List<String> menuOptions = Arrays.asList(menu.split("-"));
             validFormOfMenu(menuOptions);
-            findMenuByName(menuOptions[0]);
-            menuNames.add(menuOptions[0]);
-            int quantity = validOnlyNumber(menuOptions[1]);
+            findMenuByName(menuOptions.get(0));
+            menuNames.add(menuOptions.get(0));
+            int quantity = validOnlyNumber(menuOptions.get(1));
             validQuantityRange(quantity);
             allQuantity += quantity;
         }
@@ -27,8 +28,8 @@ public class MenusValid {
         validNotOnlyDrink(menuNames);
     }
 
-    private static void validFormOfMenu(String[] menuOptions) {
-        if (menuOptions.length != 2) {
+    private static void validFormOfMenu(List<String> menuOptions) {
+        if (menuOptions.size() != 2) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
