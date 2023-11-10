@@ -20,7 +20,7 @@ public class OutputView {
     public static void printAllMenus(Map<Menu, Integer> menuMap) {
         System.out.println("<주문 메뉴>");
         for (Menu menu : menuMap.keySet()) {
-            System.out.println(menu.getName() + menuMap.get(menu) + "개");
+            System.out.println(menu.getName() + " " + menuMap.get(menu) + "개");
         }
     }
 
