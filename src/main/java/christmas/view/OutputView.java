@@ -2,6 +2,7 @@ package christmas.view;
 
 import static christmas.util.Convert.convertAmount;
 
+import christmas.domain.Badge;
 import christmas.domain.Event;
 import christmas.domain.Menu;
 import java.util.Map;
@@ -53,4 +54,8 @@ public class OutputView {
         System.out.println(convertAmount(price) + "원");
     }
 
+    public static void printBadge(Badge badge) {
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badge.getName());
+    }
 }
