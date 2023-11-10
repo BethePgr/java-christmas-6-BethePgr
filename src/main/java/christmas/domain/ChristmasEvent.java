@@ -37,11 +37,13 @@ public class ChristmasEvent {
     }
 
     public void buildEventMap(int price, int day) {
-        checkGiftEvent(price);
-        checkDDayEvent(day);
-        checkWeekdayEvent(day);
-        checkWeekendEvent(day);
-        checkSpecialEvent(day);
+        if (price >= 10000) {
+            checkGiftEvent(price);
+            checkDDayEvent(day);
+            checkWeekdayEvent(day);
+            checkWeekendEvent(day);
+            checkSpecialEvent(day);
+        }
     }
 
     public boolean isGiftEventExist() {
