@@ -42,8 +42,10 @@ public class OutputView {
         if (eventMap.size() == 0) {
             System.out.println("없음");
         }
-        for (Event event : eventMap.keySet()) {
-            System.out.println(event.getName() + ": -" + convertAmount(eventMap.get(event)) + "원");
+        if (eventMap.size() != 0) {
+            for (Event event : eventMap.keySet()) {
+                System.out.println(event.getName() + ": -" + convertAmount(eventMap.get(event)) + "원");
+            }
         }
     }
 
@@ -52,7 +54,9 @@ public class OutputView {
         if (price == 0) {
             System.out.println("0원");
         }
-        System.out.println("-" + convertAmount(price) + "원");
+        if (price != 0) {
+            System.out.println("-" + convertAmount(price) + "원");
+        }
     }
 
     public static void printFinalPayAmount(int price) {
@@ -62,6 +66,11 @@ public class OutputView {
 
     public static void printBadge(Badge badge) {
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(badge.getName());
+        if (badge == null) {
+            System.out.println("없음");
+        }
+        if (badge != null) {
+            System.out.println(badge.getName());
+        }
     }
 }
