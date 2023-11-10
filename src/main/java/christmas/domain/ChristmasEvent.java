@@ -18,6 +18,8 @@ public class ChristmasEvent {
             26, 27, 28, 31);
     private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
     private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
+    private static final Menu GIFT_EVENT_ITEM = CHAMPAGNE;
+    private static final int GIFT_EVENT_QUANTITY = 1;
 
     private final Map<Menu, Integer> menuMap;
     private final Map<Event, Integer> eventMap = new HashMap<>();
@@ -44,7 +46,7 @@ public class ChristmasEvent {
 
     private void checkGiftEvent(int price) {
         if (price >= 120000) {
-            eventMap.put(GIFT_EVENT, CHAMPAGNE.getPrice());
+            eventMap.put(GIFT_EVENT, GIFT_EVENT_ITEM.getPrice() * GIFT_EVENT_QUANTITY);
         }
     }
 
