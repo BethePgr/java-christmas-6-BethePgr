@@ -2,6 +2,7 @@ package christmas.view;
 
 import static christmas.util.Convert.convertAmount;
 
+import christmas.domain.Event;
 import christmas.domain.Menu;
 import java.util.Map;
 
@@ -35,4 +36,11 @@ public class OutputView {
             System.out.println("없음");
         }
     }
+
+    public static void printEvents(Map<Event, Integer> eventMap) {
+        for (Event event : eventMap.keySet()) {
+            System.out.println(event.getName() + ": -" + convertAmount(eventMap.get(event)) + "원");
+        }
+    }
+
 }
