@@ -33,32 +33,40 @@ public class ChristmasEvent {
         return price;
     }
 
-    public void checkGiftEvent(int price) {
+    public void buildEventMap(int price, int day) {
+        checkGiftEvent(price);
+        checkDDayEvent(day);
+        checkWeekdayEvent(day);
+        checkWeekendEvent(day);
+        checkSpecialEvent(day);
+    }
+
+    private void checkGiftEvent(int price) {
         if (price >= 120000) {
             eventMap.put(GIFT_EVENT, CHAMPAGNE.getPrice());
         }
     }
 
-    public void checkDDayEvent(int day) {
+    private void checkDDayEvent(int day) {
         if (day <= 25) {
             int discount = 1000 + 100 * (day - 1);
             eventMap.put(D_DAY_EVENT, discount);
         }
     }
 
-    public void checkWeekdayEvent(int day) {
+    private void checkWeekdayEvent(int day) {
         if (WEEKDAY.contains(day)) {
             eventMap.put(WEEKDAY_EVENT, 2023 * countDessert());
         }
     }
 
-    public void checkWeekendEvent(int day) {
+    private void checkWeekendEvent(int day) {
         if (WEEKEND.contains(day)) {
             eventMap.put(WEEKDAY_EVENT, 2023 * countMain());
         }
     }
 
-    public void checkSpecialEvent(int day) {
+    private void checkSpecialEvent(int day) {
         if (SPECIAL_DAY.contains(day)) {
             eventMap.put(SPECIAL_EVENT, 1000);
         }
