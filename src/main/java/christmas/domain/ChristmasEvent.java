@@ -115,4 +115,12 @@ public class ChristmasEvent {
     public Badge calculateBadge(int price) {
         return findBadgeByPrice(price);
     }
+
+    public Map<Menu, Integer> getMenuMap() {
+        return menuMap;
+    }
+
+    public Map<Event, Integer> getEventMap() {
+        return eventMap;
+    }
 }
