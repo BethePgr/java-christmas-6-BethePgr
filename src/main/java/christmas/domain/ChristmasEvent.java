@@ -10,4 +10,12 @@ public class ChristmasEvent {
     public ChristmasEvent(String input) {
         menuMap = Convert.convertToMenuMap(input);
     }
+
+    public int calculateBeforeEventPrice() {
+        int price = 0;
+        for (Menu menu : menuMap.keySet()) {
+            price += menu.getPrice() * menuMap.get(menu);
+        }
+        return price;
+    }
 }
