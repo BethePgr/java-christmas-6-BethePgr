@@ -79,4 +79,15 @@ public class ChristmasEvent {
     private int countMain() {
         return (int) menuMap.keySet().stream().filter(menu -> menu.getType() == Type.MAIN).count();
     }
+
+    public int calculateDiscount() {
+        return eventMap.values().stream().mapToInt(Integer::intValue).sum();
+    }
+
+    public int calculateFinalPayAmount(int price) {
+        if (eventMap.get(GIFT_EVENT) == null) {
+            return price - calculateDiscount();
+        }
+        return price - calculateDiscount() + eventMap.get(GIFT_EVENT);
+    }
 }
