@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.domain.Event.D_DAY_EVENT;
+import static christmas.domain.Event.GIFT_EVENT;
 import static christmas.domain.Menu.CHAMPAGNE;
 
 import christmas.util.Convert;
@@ -25,7 +27,14 @@ public class ChristmasEvent {
 
     public void checkGiftEvent(int price) {
         if (price >= 120000) {
-            eventMap.put(Event.GIFT_EVENT, CHAMPAGNE.getPrice());
+            eventMap.put(GIFT_EVENT, CHAMPAGNE.getPrice());
+        }
+    }
+
+    public void checkDDayEvent(int day) {
+        if (day <= 25) {
+            int discount = 1000 + 100 * (day - 1);
+            eventMap.put(D_DAY_EVENT, discount);
         }
     }
 }
