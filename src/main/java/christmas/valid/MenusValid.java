@@ -1,6 +1,8 @@
 package christmas.valid;
 
 import static christmas.domain.Menu.findMenuByName;
+import static christmas.domain.Type.DRINK;
+import static christmas.domain.Type.findTypeByMenuName;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +24,7 @@ public class MenusValid {
         }
         validAllQuantity(allQuantity);
         validNotDuplicateMenu(menuNames);
+        validNotOnlyDrink(menuNames);
     }
 
     private static void validFormOfMenu(String[] menuOptions) {
@@ -56,5 +59,9 @@ public class MenusValid {
         }
     }
 
-
+    private static void validNotOnlyDrink(List<String> menuNames) {
+        if (menuNames.stream().filter(menu -> findTypeByMenuName(menu) == DRINK).count() == menuNames.size()) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
+        }
+    }
 }
