@@ -82,11 +82,23 @@ public class ChristmasEvent {
     }
 
     private int countDessert() {
-        return (int) menuMap.keySet().stream().filter(menu -> menu.getType() == Type.DESSERT).count();
+        int count = 0;
+        for (Menu menu : menuMap.keySet()) {
+            if (menu.getType() == Type.DESSERT) {
+                count += menuMap.get(menu);
+            }
+        }
+        return count;
     }
 
     private int countMain() {
-        return (int) menuMap.keySet().stream().filter(menu -> menu.getType() == Type.MAIN).count();
+        int count = 0;
+        for (Menu menu : menuMap.keySet()) {
+            if (menu.getType() == Type.MAIN) {
+                count += menuMap.get(menu);
+            }
+        }
+        return count;
     }
 
     public int calculateDiscount() {
