@@ -43,4 +43,9 @@ public class OutputView {
         }
     }
 
+    public static void printDiscount(int price) {
+        System.out.println("<총혜택 금액>");
+        System.out.println("-" + convertAmount(price) + "원");
+    }
+
 }
