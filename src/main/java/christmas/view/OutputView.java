@@ -48,4 +48,9 @@ public class OutputView {
         System.out.println("-" + convertAmount(price) + "원");
     }
 
+    public static void printFinalPayAmount(int price) {
+        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(convertAmount(price) + "원");
+    }
+
 }
