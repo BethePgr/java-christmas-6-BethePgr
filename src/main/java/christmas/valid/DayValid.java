@@ -2,9 +2,10 @@ package christmas.valid;
 
 public class DayValid {
 
-    public static void validDay(String input) {
+    public static int validDay(String input) {
         int day = validOnlyNumber(input);
         validRangeOfDay(day);
+        return day;
     }
 
     private static int validOnlyNumber(String input) {
