@@ -16,16 +16,25 @@ public class MenusValid {
         int allQuantity = 0;
         for (String menu : menus) {
             List<String> menuOptions = Arrays.asList(menu.split("-"));
-            validFormOfMenu(menuOptions);
-            findMenuByName(menuOptions.get(0));
+            validMenuFormAndName(menuOptions);
             menuNames.add(menuOptions.get(0));
-            int quantity = validOnlyNumber(menuOptions.get(1));
-            validQuantityRange(quantity);
+            int quantity = validQuantity(menuOptions);
             allQuantity += quantity;
         }
         validAllQuantity(allQuantity);
         validNotDuplicateMenu(menuNames);
         validNotOnlyDrink(menuNames);
+    }
+
+    private static void validMenuFormAndName(List<String> menuOptions) {
+        validFormOfMenu(menuOptions);
+        findMenuByName(menuOptions.get(0));
+    }
+
+    private static int validQuantity(List<String> menuOptions) {
+        int quantity = validOnlyNumber(menuOptions.get(1));
+        validQuantityRange(quantity);
+        return quantity;
     }
 
     private static void validFormOfMenu(List<String> menuOptions) {
