@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.domain.Badge.findBadgeByPrice;
 import static christmas.domain.Event.D_DAY_EVENT;
 import static christmas.domain.Event.GIFT_EVENT;
 import static christmas.domain.Event.SPECIAL_EVENT;
@@ -89,5 +90,9 @@ public class ChristmasEvent {
             return price - calculateDiscount();
         }
         return price - calculateDiscount() + eventMap.get(GIFT_EVENT);
+    }
+
+    public Badge calculateBadge(int price) {
+        return findBadgeByPrice(price);
     }
 }
