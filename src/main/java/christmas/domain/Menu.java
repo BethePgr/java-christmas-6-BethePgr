@@ -5,6 +5,8 @@ import static christmas.domain.Type.DESSERT;
 import static christmas.domain.Type.DRINK;
 import static christmas.domain.Type.MAIN;
 
+import java.util.Arrays;
+
 public enum Menu {
 
     MUSHROOM_SOUP("양송이수프", 6000, APPETIZER),
@@ -31,6 +33,11 @@ public enum Menu {
         this.name = name;
         this.price = price;
         this.type = type;
+    }
+
+    public static Menu findMenuByName(String name) {
+        return Arrays.stream(Menu.values()).filter(menu -> menu.getName().equals(name)).findAny()
+                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
 
     public String getName() {
