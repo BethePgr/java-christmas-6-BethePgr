@@ -44,6 +44,10 @@ public class ChristmasEvent {
         checkSpecialEvent(day);
     }
 
+    public boolean isGiftEventExist() {
+        return eventMap.get(GIFT_EVENT) != null;
+    }
+
     private void checkGiftEvent(int price) {
         if (price >= 120000) {
             eventMap.put(GIFT_EVENT, GIFT_EVENT_ITEM.getPrice() * GIFT_EVENT_QUANTITY);
