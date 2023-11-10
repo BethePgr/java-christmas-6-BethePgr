@@ -3,6 +3,7 @@ package christmas.util;
 import static christmas.domain.Menu.findMenuByName;
 
 import christmas.domain.Menu;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,11 @@ public class Convert {
             menuMap.put(findMenuByName(menuName), menuQuantity);
         }
         return menuMap;
+    }
+
+    public static String convertAmount(int price) {
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        return formatter.format(price);
     }
 
 }
