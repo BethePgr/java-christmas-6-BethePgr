@@ -49,7 +49,9 @@ public class OutputView {
         if (giftEventExist) {
             System.out.println("샴페인 1개");
         }
-        System.out.println(NOTHING);
+        if (!giftEventExist) {
+            System.out.println(NOTHING);
+        }
     }
 
     public static void printEvents(Map<Event, Integer> eventMap) {
