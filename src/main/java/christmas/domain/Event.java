@@ -8,7 +8,7 @@ public enum Event {
     SPECIAL_EVENT("특별 할인"),
     GIFT_EVENT("증정 이벤트");
 
-    private String name;
+    private final String name;
 
     Event(String name) {
         this.name = name;

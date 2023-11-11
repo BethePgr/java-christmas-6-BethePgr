@@ -11,7 +11,7 @@ public enum Type {
     DESSERT("디저트"),
     DRINK("음료");
 
-    private String name;
+    private final String name;
 
     Type(String name) {
         this.name = name;
