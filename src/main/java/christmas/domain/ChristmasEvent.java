@@ -9,7 +9,6 @@ import static christmas.domain.Event.SPECIAL_EVENT;
 import static christmas.domain.Event.WEEKDAY_EVENT;
 import static christmas.domain.Event.WEEKEND_EVENT;
 
-import christmas.util.Convert;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,19 +20,11 @@ public class ChristmasEvent {
     private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
     private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
 
-    private final Map<Menu, Integer> menuMap;
+    private final ChristmasMenu christmasMenu;
     private final Map<Event, Integer> eventMap = new HashMap<>();
 
-    public ChristmasEvent(String input) {
-        menuMap = Convert.convertToMenuMap(input);
-    }
-
-    public int calculateBeforeEventPrice() {
-        int price = 0;
-        for (Menu menu : menuMap.keySet()) {
-            price += menu.getPrice() * menuMap.get(menu);
-        }
-        return price;
+    public ChristmasEvent(ChristmasMenu christmasMenu) {
+        this.christmasMenu = christmasMenu;
     }
 
     public void buildEventMap(int price, int day) {
@@ -65,13 +56,13 @@ public class ChristmasEvent {
 
     private void checkWeekdayEvent(int day) {
         if (WEEKDAY.contains(day)) {
-            eventMap.put(WEEKDAY_EVENT, 2023 * countDessert());
+            eventMap.put(WEEKDAY_EVENT, 2023 * christmasMenu.countDessert());
         }
     }
 
     private void checkWeekendEvent(int day) {
         if (WEEKEND.contains(day)) {
-            eventMap.put(WEEKEND_EVENT, 2023 * countMain());
+            eventMap.put(WEEKEND_EVENT, 2023 * christmasMenu.countMain());
         }
     }
 
@@ -79,26 +70,6 @@ public class ChristmasEvent {
         if (SPECIAL_DAY.contains(day)) {
             eventMap.put(SPECIAL_EVENT, 1000);
         }
-    }
-
-    private int countDessert() {
-        int count = 0;
-        for (Menu menu : menuMap.keySet()) {
-            if (menu.getType() == Type.DESSERT) {
-                count += menuMap.get(menu);
-            }
-        }
-        return count;
-    }
-
-    private int countMain() {
-        int count = 0;
-        for (Menu menu : menuMap.keySet()) {
-            if (menu.getType() == Type.MAIN) {
-                count += menuMap.get(menu);
-            }
-        }
-        return count;
     }
 
     public int calculateDiscount() {
@@ -114,10 +85,6 @@ public class ChristmasEvent {
 
     public Badge calculateBadge(int price) {
         return findBadgeByPrice(price);
-    }
-
-    public Map<Menu, Integer> getMenuMap() {
-        return menuMap;
     }
 
     public Map<Event, Integer> getEventMap() {
