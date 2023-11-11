@@ -8,25 +8,58 @@ import christmas.view.OutputView;
 public class ChristmasEventController {
 
     public void run() {
+        int day = visitDay();
+
+        ChristmasMenu christmasMenu = visitorChristmasMenu(day);
+        int originalPrice = christmasMenu.calculateBeforeEventPrice();
+
+        ChristmasEvent christmasEvent = visitorChristmasEvent(day, christmasMenu, originalPrice);
+        visitorApplyEvents(christmasMenu, originalPrice, christmasEvent);
+
+        int discount = visitorDiscount(christmasEvent);
+        visitorFinalPay(originalPrice, christmasEvent);
+        visitorBadge(christmasEvent, discount);
+    }
+
+    private static int visitDay() {
         OutputView.printStartEventPlanner();
-        int day = InputController.inputDayOfDecember();
+        return InputController.inputDayOfDecember();
+    }
+
+    private static ChristmasMenu visitorChristmasMenu(int day) {
         String menus = InputController.inputMenuNameAndQuantity();
         OutputView.printShowEvent(day);
-        ChristmasMenu christmasMenu = new ChristmasMenu(menus);
-        int originalPrice = christmasMenu.calculateBeforeEventPrice();
+        return new ChristmasMenu(menus);
+    }
+
+    private static ChristmasEvent visitorChristmasEvent(int day, ChristmasMenu christmasMenu, int originalPrice) {
         ChristmasEvent christmasEvent = new ChristmasEvent(christmasMenu);
         christmasEvent.buildEventMap(originalPrice, day);
+        return christmasEvent;
+    }
 
+    private static void visitorApplyEvents(ChristmasMenu christmasMenu, int originalPrice,
+                                           ChristmasEvent christmasEvent) {
         OutputView.printAllMenus(christmasMenu.getMenuMap());
         OutputView.printBeforeEventPrice(originalPrice);
         OutputView.printGiftEvent(christmasEvent.isGiftEventExist());
         OutputView.printEvents(christmasEvent.getEventMap());
+    }
 
+    private static int visitorDiscount(ChristmasEvent christmasEvent) {
         int discount = christmasEvent.calculateDiscount();
         OutputView.printDiscount(discount);
+        return discount;
+    }
+
+    private static void visitorFinalPay(int originalPrice, ChristmasEvent christmasEvent) {
         int finalPay = christmasEvent.calculateFinalPayAmount(originalPrice);
         OutputView.printFinalPayAmount(finalPay);
+    }
+
+    private static void visitorBadge(ChristmasEvent christmasEvent, int discount) {
         Badge badge = christmasEvent.calculateBadge(discount);
         OutputView.printBadge(badge);
     }
+
 }
