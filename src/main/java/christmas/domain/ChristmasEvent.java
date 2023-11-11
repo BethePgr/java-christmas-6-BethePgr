@@ -1,12 +1,13 @@
 package christmas.domain;
 
+import static christmas.constant.GiftConst.GIFT_EVENT_ITEM;
+import static christmas.constant.GiftConst.GIFT_EVENT_QUANTITY;
 import static christmas.domain.Badge.findBadgeByPrice;
 import static christmas.domain.Event.D_DAY_EVENT;
 import static christmas.domain.Event.GIFT_EVENT;
 import static christmas.domain.Event.SPECIAL_EVENT;
 import static christmas.domain.Event.WEEKDAY_EVENT;
 import static christmas.domain.Event.WEEKEND_EVENT;
-import static christmas.domain.Menu.CHAMPAGNE;
 
 import christmas.util.Convert;
 import java.util.HashMap;
@@ -19,8 +20,6 @@ public class ChristmasEvent {
             26, 27, 28, 31);
     private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
     private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
-    private static final Menu GIFT_EVENT_ITEM = CHAMPAGNE;
-    private static final int GIFT_EVENT_QUANTITY = 1;
 
     private final Map<Menu, Integer> menuMap;
     private final Map<Event, Integer> eventMap = new HashMap<>();

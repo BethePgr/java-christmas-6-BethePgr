@@ -1,5 +1,7 @@
 package christmas.view;
 
+import static christmas.constant.GiftConst.GIFT_EVENT_ITEM;
+import static christmas.constant.GiftConst.GIFT_EVENT_QUANTITY;
 import static christmas.constant.ViewMessageConst.AFTER_DISCOUNT_PRICE_MESSAGE;
 import static christmas.constant.ViewMessageConst.ALL_DISCOUNT_AMOUNT;
 import static christmas.constant.ViewMessageConst.ALL_DISCOUNT_MESSAGE;
@@ -47,7 +49,7 @@ public class OutputView {
     public static void printGiftEvent(boolean giftEventExist) {
         System.out.println(GIFT_MENU_MESSAGE);
         if (giftEventExist) {
-            System.out.println("샴페인 1개");
+            System.out.printf(MENU_QUANTITY, GIFT_EVENT_ITEM.getName(), GIFT_EVENT_QUANTITY);
         }
         if (!giftEventExist) {
             System.out.println(NOTHING);
