@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constant.ErrorMessageConst.UNAVAILABLE_ORDER_MESSAGE;
+
 import java.util.Arrays;
 
 public enum Type {
@@ -17,7 +19,7 @@ public enum Type {
 
     public static Type findTypeByMenuName(String name) {
         return Arrays.stream(Menu.values()).filter(menu -> menu.getName().equals(name)).findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.")).getType();
+                .orElseThrow(() -> new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE)).getType();
     }
 
 }

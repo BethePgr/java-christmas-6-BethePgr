@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.constant.ErrorMessageConst.UNAVAILABLE_ORDER_MESSAGE;
 import static christmas.domain.Type.APPETIZER;
 import static christmas.domain.Type.DESSERT;
 import static christmas.domain.Type.DRINK;
@@ -37,7 +38,7 @@ public enum Menu {
 
     public static Menu findMenuByName(String name) {
         return Arrays.stream(Menu.values()).filter(menu -> menu.getName().equals(name)).findAny()
-                .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+                .orElseThrow(() -> new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE));
     }
 
     public String getName() {

@@ -1,5 +1,7 @@
 package christmas.valid;
 
+import static christmas.constant.ErrorMessageConst.CANNOT_ORDER_ONLY_DRINK;
+import static christmas.constant.ErrorMessageConst.UNAVAILABLE_ORDER_MESSAGE;
 import static christmas.domain.Menu.findMenuByName;
 import static christmas.domain.Type.DRINK;
 import static christmas.domain.Type.findTypeByMenuName;
@@ -39,39 +41,39 @@ public class MenusValid {
 
     private static void validFormOfMenu(List<String> menuOptions) {
         if (menuOptions.size() != 2) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
     private static int validOnlyNumber(String input) {
         String reg = "^[0-9]*$";
         if (!input.matches(reg)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
         return Integer.parseInt(input);
     }
 
     private static void validQuantityRange(int quantity) {
         if (quantity < 1) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
     private static void validAllQuantity(int allQuantity) {
         if (allQuantity > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
     private static void validNotDuplicateMenu(List<String> menuNames) {
         if (menuNames.stream().distinct().count() != menuNames.size()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
     private static void validNotOnlyDrink(List<String> menuNames) {
         if (menuNames.stream().filter(menu -> findTypeByMenuName(menu) == DRINK).count() == menuNames.size()) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(CANNOT_ORDER_ONLY_DRINK);
         }
     }
 }
