@@ -1,20 +1,20 @@
 package christmas.view;
 
-import static christmas.constant.ViewMessage.AFTER_DISCOUNT_PRICE_MESSAGE;
-import static christmas.constant.ViewMessage.ALL_DISCOUNT_AMOUNT;
-import static christmas.constant.ViewMessage.ALL_DISCOUNT_MESSAGE;
-import static christmas.constant.ViewMessage.BEFORE_DISCOUNT_PRICE_MESSAGE;
-import static christmas.constant.ViewMessage.DECEMBER_BADGE;
-import static christmas.constant.ViewMessage.EVENT_DISCOUNT_AMOUNT;
-import static christmas.constant.ViewMessage.EVENT_LIST_MESSAGE;
-import static christmas.constant.ViewMessage.EVENT_PLANNER_MESSAGE;
-import static christmas.constant.ViewMessage.GIFT_MENU_MESSAGE;
-import static christmas.constant.ViewMessage.MENU_QUANTITY;
-import static christmas.constant.ViewMessage.NOTHING;
-import static christmas.constant.ViewMessage.ORDERED_MENU_MESSAGE;
-import static christmas.constant.ViewMessage.PRICE_WON;
-import static christmas.constant.ViewMessage.SHOW_EVENT_MESSAGE;
-import static christmas.constant.ViewMessage.ZERO_WON;
+import static christmas.constant.ViewMessageConst.AFTER_DISCOUNT_PRICE_MESSAGE;
+import static christmas.constant.ViewMessageConst.ALL_DISCOUNT_AMOUNT;
+import static christmas.constant.ViewMessageConst.ALL_DISCOUNT_MESSAGE;
+import static christmas.constant.ViewMessageConst.BEFORE_DISCOUNT_PRICE_MESSAGE;
+import static christmas.constant.ViewMessageConst.DECEMBER_BADGE;
+import static christmas.constant.ViewMessageConst.EVENT_DISCOUNT_AMOUNT;
+import static christmas.constant.ViewMessageConst.EVENT_LIST_MESSAGE;
+import static christmas.constant.ViewMessageConst.EVENT_PLANNER_MESSAGE;
+import static christmas.constant.ViewMessageConst.GIFT_MENU_MESSAGE;
+import static christmas.constant.ViewMessageConst.MENU_QUANTITY;
+import static christmas.constant.ViewMessageConst.NOTHING;
+import static christmas.constant.ViewMessageConst.ORDERED_MENU_MESSAGE;
+import static christmas.constant.ViewMessageConst.PRICE_WON;
+import static christmas.constant.ViewMessageConst.SHOW_EVENT_MESSAGE;
+import static christmas.constant.ViewMessageConst.ZERO_WON;
 import static christmas.util.Convert.convertAmount;
 
 import christmas.domain.Badge;

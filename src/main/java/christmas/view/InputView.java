@@ -1,7 +1,7 @@
 package christmas.view;
 
-import static christmas.constant.ViewMessage.INPUT_MENU_NAME_QUANTITY;
-import static christmas.constant.ViewMessage.INPUT_VISIT_DAY_MESSAGE;
+import static christmas.constant.ViewMessageConst.INPUT_MENU_NAME_QUANTITY;
+import static christmas.constant.ViewMessageConst.INPUT_VISIT_DAY_MESSAGE;
 
 import camp.nextstep.edu.missionutils.Console;
 
