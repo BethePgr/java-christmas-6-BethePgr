@@ -1,27 +1,27 @@
 package christmas.controller;
 
-import christmas.domain.Menu;
 import christmas.valid.DayValid;
 import christmas.valid.MenusValid;
 import christmas.view.InputView;
-import java.util.Map;
 
 public class InputController {
 
-    public static int inputDayOfDecember() {
+    public static String inputDayOfDecember() {
         String day = InputView.inputDayOfDecember();
         try {
-            return DayValid.validDay(day);
+            DayValid.validDay(day);
+            return day;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputDayOfDecember();
         }
     }
 
-    public static Map<Menu, Integer> inputMenuNameAndQuantity() {
+    public static String inputMenuNameAndQuantity() {
         String menus = InputView.inputMenuNameAndQuantity();
         try {
-            return MenusValid.validMenus(menus);
+            MenusValid.validMenus(menus);
+            return menus;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMenuNameAndQuantity();

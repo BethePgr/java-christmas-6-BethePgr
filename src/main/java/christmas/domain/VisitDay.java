@@ -1,11 +1,13 @@
 package christmas.domain;
 
+import christmas.valid.DayValid;
+
 public class VisitDay {
 
     private int day;
 
-    public VisitDay(int day) {
-        this.day = day;
+    public VisitDay(String day) {
+        this.day = DayValid.validDay(day);
     }
 
     public int getDay() {

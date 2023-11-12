@@ -1,13 +1,14 @@
 package christmas.domain;
 
+import christmas.valid.MenusValid;
 import java.util.Map;
 
 public class ChristmasMenu {
 
     private final Map<Menu, Integer> menuMap;
 
-    public ChristmasMenu(Map<Menu, Integer> menuMap) {
-        this.menuMap = menuMap;
+    public ChristmasMenu(String menus) {
+        this.menuMap = MenusValid.validMenus(menus);
     }
 
     public int calculateBeforeEventPrice() {
