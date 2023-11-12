@@ -1,5 +1,16 @@
 package christmas.domain;
 
+import static christmas.constant.EventConst.CHRISTMAS_D_DAY;
+import static christmas.constant.EventConst.CHRISTMAS_D_DAY_EVENT_BASIC_DISCOUNT;
+import static christmas.constant.EventConst.CHRISTMAS_D_DAY_EVENT_PER_DAY_DISCOUNT;
+import static christmas.constant.EventConst.DECEMBER_SPECIAL_DAY;
+import static christmas.constant.EventConst.DECEMBER_WEEKDAY;
+import static christmas.constant.EventConst.DECEMBER_WEEKEND;
+import static christmas.constant.EventConst.DESSERT_DISCOUNT;
+import static christmas.constant.EventConst.EVENT_LEAST_APPLY_PRICE;
+import static christmas.constant.EventConst.GIFT_EVENT_LEAST_PRICE;
+import static christmas.constant.EventConst.MAIN_DISCOUNT;
+import static christmas.constant.EventConst.SPECIAL_DISCOUNT;
 import static christmas.constant.GiftConst.GIFT_EVENT_ITEM;
 import static christmas.constant.GiftConst.GIFT_EVENT_QUANTITY;
 import static christmas.domain.Badge.findBadgeByPrice;
@@ -10,15 +21,9 @@ import static christmas.domain.Event.WEEKDAY_EVENT;
 import static christmas.domain.Event.WEEKEND_EVENT;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ChristmasEvent {
-
-    private static final List<Integer> WEEKDAY = List.of(3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 17, 18, 19, 20, 21, 24, 25,
-            26, 27, 28, 31);
-    private static final List<Integer> WEEKEND = List.of(1, 2, 8, 9, 15, 16, 22, 23, 29, 30);
-    private static final List<Integer> SPECIAL_DAY = List.of(3, 10, 17, 24, 25, 31);
 
     private final ChristmasMenu christmasMenu;
     private final Map<Event, Integer> eventMap = new HashMap<>();
@@ -28,7 +33,7 @@ public class ChristmasEvent {
     }
 
     public void buildEventMap(int price, int day) {
-        if (price >= 10000) {
+        if (price >= EVENT_LEAST_APPLY_PRICE) {
             checkGiftEvent(price);
             checkDDayEvent(day);
             checkWeekdayEvent(day);
@@ -42,33 +47,33 @@ public class ChristmasEvent {
     }
 
     private void checkGiftEvent(int price) {
-        if (price >= 120000) {
+        if (price >= GIFT_EVENT_LEAST_PRICE) {
             eventMap.put(GIFT_EVENT, GIFT_EVENT_ITEM.getPrice() * GIFT_EVENT_QUANTITY);
         }
     }
 
     private void checkDDayEvent(int day) {
-        if (day <= 25) {
-            int discount = 1000 + 100 * (day - 1);
+        if (day <= CHRISTMAS_D_DAY) {
+            int discount = CHRISTMAS_D_DAY_EVENT_BASIC_DISCOUNT + CHRISTMAS_D_DAY_EVENT_PER_DAY_DISCOUNT * (day - 1);
             eventMap.put(D_DAY_EVENT, discount);
         }
     }
 
     private void checkWeekdayEvent(int day) {
-        if (WEEKDAY.contains(day)) {
-            eventMap.put(WEEKDAY_EVENT, 2023 * christmasMenu.countDessert());
+        if (DECEMBER_WEEKDAY.contains(day)) {
+            eventMap.put(WEEKDAY_EVENT, DESSERT_DISCOUNT * christmasMenu.countDessert());
         }
     }
 
     private void checkWeekendEvent(int day) {
-        if (WEEKEND.contains(day)) {
-            eventMap.put(WEEKEND_EVENT, 2023 * christmasMenu.countMain());
+        if (DECEMBER_WEEKEND.contains(day)) {
+            eventMap.put(WEEKEND_EVENT, MAIN_DISCOUNT * christmasMenu.countMain());
         }
     }
 
     private void checkSpecialEvent(int day) {
-        if (SPECIAL_DAY.contains(day)) {
-            eventMap.put(SPECIAL_EVENT, 1000);
+        if (DECEMBER_SPECIAL_DAY.contains(day)) {
+            eventMap.put(SPECIAL_EVENT, SPECIAL_DISCOUNT);
         }
     }
 
