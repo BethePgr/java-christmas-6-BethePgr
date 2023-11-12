@@ -61,13 +61,13 @@ public class ChristmasEvent {
     }
 
     private void checkWeekdayEvent(int day) {
-        if (DECEMBER_WEEKDAY.contains(day)) {
+        if (DECEMBER_WEEKDAY.contains(day) && christmasMenu.countDessert() != 0) {
             eventMap.put(WEEKDAY_EVENT, DESSERT_DISCOUNT * christmasMenu.countDessert());
         }
     }
 
     private void checkWeekendEvent(int day) {
-        if (DECEMBER_WEEKEND.contains(day)) {
+        if (DECEMBER_WEEKEND.contains(day) && christmasMenu.countMain() != 0) {
             eventMap.put(WEEKEND_EVENT, MAIN_DISCOUNT * christmasMenu.countMain());
         }
     }
