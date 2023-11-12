@@ -11,7 +11,6 @@ import static christmas.domain.Type.findTypeByMenuName;
 
 import christmas.domain.Menu;
 import christmas.util.Convert;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -19,19 +18,17 @@ import java.util.Map;
 public class MenusValid {
 
     public static Map<Menu, Integer> validMenus(String input) {
-        List<String> menuNames = new ArrayList<>();
         List<String> menus = Arrays.asList(input.split(","));
-        int allQuantity = 0;
         for (String menu : menus) {
             List<String> menuOptions = Arrays.asList(menu.split("-"));
             validMenuFormAndName(menuOptions);
-            menuNames.add(menuOptions.get(0));
-            allQuantity += validQuantity(menuOptions);
+            validQuantity(menuOptions);
         }
-        validAllQuantity(allQuantity);
-        validNotDuplicateMenu(menuNames);
-        validNotOnlyDrink(menuNames);
-        return Convert.convertToMenuMap(input);
+        Map<Menu, Integer> menuMap = Convert.convertToMenuMap(input);
+        validAllQuantity(menuMap);
+        validNotDuplicateMenu(menuMap, menus);
+        validNotOnlyDrink(menuMap);
+        return menuMap;
     }
 
     private static void validMenuFormAndName(List<String> menuOptions) {
@@ -65,21 +62,22 @@ public class MenusValid {
         }
     }
 
-    private static void validAllQuantity(int allQuantity) {
-        if (allQuantity > MENU_MAX_ORDER_QUANTITY) {
+    private static void validAllQuantity(Map<Menu, Integer> menuMap) {
+        if (menuMap.values().stream().mapToInt(Integer::intValue).sum() > MENU_MAX_ORDER_QUANTITY) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
-    private static void validNotDuplicateMenu(List<String> menuNames) {
-        if (menuNames.stream().distinct().count() != menuNames.size()) {
+    private static void validNotDuplicateMenu(Map<Menu, Integer> menuMap, List<String> menus) {
+        if (menuMap.size() != menus.size()) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
-    private static void validNotOnlyDrink(List<String> menuNames) {
-        if (menuNames.stream().filter(menu -> findTypeByMenuName(menu) == DRINK).count() == menuNames.size()) {
+    private static void validNotOnlyDrink(Map<Menu, Integer> menuMap) {
+        if (menuMap.keySet().stream().allMatch(menu -> findTypeByMenuName(menu.getName()) == DRINK)) {
             throw new IllegalArgumentException(CANNOT_ORDER_ONLY_DRINK);
         }
     }
+
 }
