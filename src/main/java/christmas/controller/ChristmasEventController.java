@@ -4,18 +4,19 @@ import christmas.domain.Badge;
 import christmas.domain.ChristmasEvent;
 import christmas.domain.ChristmasMenu;
 import christmas.domain.Menu;
+import christmas.domain.VisitDay;
 import christmas.view.OutputView;
 import java.util.Map;
 
 public class ChristmasEventController {
 
     public void run() {
-        int day = visitDay();
+        VisitDay visitDay = visitDay();
 
-        ChristmasMenu christmasMenu = visitorChristmasMenu(day);
+        ChristmasMenu christmasMenu = visitorChristmasMenu(visitDay);
         int originalPrice = christmasMenu.calculateBeforeEventPrice();
 
-        ChristmasEvent christmasEvent = visitorChristmasEvent(day, christmasMenu, originalPrice);
+        ChristmasEvent christmasEvent = visitorChristmasEvent(visitDay, christmasMenu, originalPrice);
         visitorApplyEvents(christmasMenu, originalPrice, christmasEvent);
 
         int discount = visitorDiscount(christmasEvent);
@@ -23,18 +24,18 @@ public class ChristmasEventController {
         visitorBadge(christmasEvent, discount);
     }
 
-    private static int visitDay() {
+    private static VisitDay visitDay() {
         OutputView.printStartEventPlanner();
-        return InputController.inputDayOfDecember();
+        return new VisitDay(InputController.inputDayOfDecember());
     }
 
-    private static ChristmasMenu visitorChristmasMenu(int day) {
+    private static ChristmasMenu visitorChristmasMenu(VisitDay visitDay) {
         Map<Menu, Integer> menus = InputController.inputMenuNameAndQuantity();
-        OutputView.printShowEvent(day);
+        OutputView.printShowEvent(visitDay.getDay());
         return new ChristmasMenu(menus);
     }
 
-    private static ChristmasEvent visitorChristmasEvent(int day, ChristmasMenu christmasMenu, int originalPrice) {
+    private static ChristmasEvent visitorChristmasEvent(VisitDay day, ChristmasMenu christmasMenu, int originalPrice) {
         ChristmasEvent christmasEvent = new ChristmasEvent(christmasMenu);
         christmasEvent.buildEventMap(originalPrice, day);
         return christmasEvent;

@@ -32,7 +32,8 @@ public class ChristmasEvent {
         this.christmasMenu = christmasMenu;
     }
 
-    public void buildEventMap(int price, int day) {
+    public void buildEventMap(int price, VisitDay visitDay) {
+        int day = visitDay.getDay();
         if (price >= EVENT_LEAST_APPLY_PRICE) {
             checkGiftEvent(price);
             checkDDayEvent(day);
