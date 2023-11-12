@@ -3,7 +3,9 @@ package christmas.controller;
 import christmas.domain.Badge;
 import christmas.domain.ChristmasEvent;
 import christmas.domain.ChristmasMenu;
+import christmas.domain.Menu;
 import christmas.view.OutputView;
+import java.util.Map;
 
 public class ChristmasEventController {
 
@@ -27,7 +29,7 @@ public class ChristmasEventController {
     }
 
     private static ChristmasMenu visitorChristmasMenu(int day) {
-        String menus = InputController.inputMenuNameAndQuantity();
+        Map<Menu, Integer> menus = InputController.inputMenuNameAndQuantity();
         OutputView.printShowEvent(day);
         return new ChristmasMenu(menus);
     }

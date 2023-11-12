@@ -1,14 +1,13 @@
 package christmas.domain;
 
-import christmas.util.Convert;
 import java.util.Map;
 
 public class ChristmasMenu {
 
     private final Map<Menu, Integer> menuMap;
 
-    public ChristmasMenu(String input) {
-        menuMap = Convert.convertToMenuMap(input);
+    public ChristmasMenu(Map<Menu, Integer> menuMap) {
+        this.menuMap = menuMap;
     }
 
     public int calculateBeforeEventPrice() {

@@ -9,13 +9,16 @@ import static christmas.domain.Menu.findMenuByName;
 import static christmas.domain.Type.DRINK;
 import static christmas.domain.Type.findTypeByMenuName;
 
+import christmas.domain.Menu;
+import christmas.util.Convert;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class MenusValid {
 
-    public static void validMenus(String input) {
+    public static Map<Menu, Integer> validMenus(String input) {
         List<String> menuNames = new ArrayList<>();
         List<String> menus = Arrays.asList(input.split(","));
         int allQuantity = 0;
@@ -23,12 +26,12 @@ public class MenusValid {
             List<String> menuOptions = Arrays.asList(menu.split("-"));
             validMenuFormAndName(menuOptions);
             menuNames.add(menuOptions.get(0));
-            int quantity = validQuantity(menuOptions);
-            allQuantity += quantity;
+            allQuantity += validQuantity(menuOptions);
         }
         validAllQuantity(allQuantity);
         validNotDuplicateMenu(menuNames);
         validNotOnlyDrink(menuNames);
+        return Convert.convertToMenuMap(input);
     }
 
     private static void validMenuFormAndName(List<String> menuOptions) {
