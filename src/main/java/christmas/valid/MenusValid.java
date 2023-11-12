@@ -2,6 +2,9 @@ package christmas.valid;
 
 import static christmas.constant.ErrorMessageConst.CANNOT_ORDER_ONLY_DRINK;
 import static christmas.constant.ErrorMessageConst.UNAVAILABLE_ORDER_MESSAGE;
+import static christmas.constant.ValidConst.MENU_INDIVIDUAL_LEAST_ORDER_QUANTITY;
+import static christmas.constant.ValidConst.MENU_MAX_ORDER_QUANTITY;
+import static christmas.constant.ValidConst.MENU_OPTIONS_ORDER_SIZE;
 import static christmas.domain.Menu.findMenuByName;
 import static christmas.domain.Type.DRINK;
 import static christmas.domain.Type.findTypeByMenuName;
@@ -40,7 +43,7 @@ public class MenusValid {
     }
 
     private static void validFormOfMenu(List<String> menuOptions) {
-        if (menuOptions.size() != 2) {
+        if (menuOptions.size() != MENU_OPTIONS_ORDER_SIZE) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
@@ -54,13 +57,13 @@ public class MenusValid {
     }
 
     private static void validQuantityRange(int quantity) {
-        if (quantity < 1) {
+        if (quantity < MENU_INDIVIDUAL_LEAST_ORDER_QUANTITY) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }
 
     private static void validAllQuantity(int allQuantity) {
-        if (allQuantity > 20) {
+        if (allQuantity > MENU_MAX_ORDER_QUANTITY) {
             throw new IllegalArgumentException(UNAVAILABLE_ORDER_MESSAGE);
         }
     }

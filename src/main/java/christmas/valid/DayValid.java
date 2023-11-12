@@ -1,6 +1,8 @@
 package christmas.valid;
 
 import static christmas.constant.ErrorMessageConst.UNAVAILABLE_VISIT_DAY;
+import static christmas.constant.ValidConst.DECEMBER_END_DAY;
+import static christmas.constant.ValidConst.DECEMBER_START_DAY;
 
 public class DayValid {
 
@@ -19,7 +21,7 @@ public class DayValid {
     }
 
     private static void validRangeOfDay(int day) {
-        if (day < 1 || day > 31) {
+        if (day < DECEMBER_START_DAY || day > DECEMBER_END_DAY) {
             throw new IllegalArgumentException(UNAVAILABLE_VISIT_DAY);
         }
     }
