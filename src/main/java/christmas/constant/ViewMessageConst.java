@@ -24,6 +24,7 @@ public class ViewMessageConst {
 
     public static final String NOTHING = "없음";
     public static final String ZERO_WON = "0원";
+    public static final int ZERO = 0;
 
 
     public static final String INPUT_VISIT_DAY_MESSAGE = "12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)";

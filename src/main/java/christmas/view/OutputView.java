@@ -16,6 +16,7 @@ import static christmas.constant.ViewMessageConst.NOTHING;
 import static christmas.constant.ViewMessageConst.ORDERED_MENU_MESSAGE;
 import static christmas.constant.ViewMessageConst.PRICE_WON;
 import static christmas.constant.ViewMessageConst.SHOW_EVENT_MESSAGE;
+import static christmas.constant.ViewMessageConst.ZERO;
 import static christmas.constant.ViewMessageConst.ZERO_WON;
 import static christmas.util.Convert.convertAmount;
 
@@ -58,10 +59,10 @@ public class OutputView {
 
     public static void printEvents(Map<Event, Integer> eventMap) {
         System.out.println(EVENT_LIST_MESSAGE);
-        if (eventMap.size() == 0) {
+        if (eventMap.size() == ZERO) {
             System.out.println(NOTHING);
         }
-        if (eventMap.size() != 0) {
+        if (eventMap.size() != ZERO) {
             for (Event event : eventMap.keySet()) {
                 System.out.printf(EVENT_DISCOUNT_AMOUNT, event.getName(), convertAmount(eventMap.get(event)));
             }
@@ -70,10 +71,10 @@ public class OutputView {
 
     public static void printDiscount(int price) {
         System.out.println(ALL_DISCOUNT_MESSAGE);
-        if (price == 0) {
+        if (price == ZERO) {
             System.out.println(ZERO_WON);
         }
-        if (price != 0) {
+        if (price != ZERO) {
             System.out.printf(ALL_DISCOUNT_AMOUNT, convertAmount(price));
         }
     }
