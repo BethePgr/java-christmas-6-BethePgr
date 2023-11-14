@@ -96,4 +96,72 @@ class ChristmasEventTest {
         assertThat(christmasEvent.getEventMap().size()).isEqualTo(0);
 
     }
+
+    @Test
+    @DisplayName("스페셜 할인은 적용되지만 디저트 메뉴가 없어서 평일 할인은 적용되지 않아야한다")
+    void special_no_weekday_menu() throws Exception {
+        String specialWeekday = "3";
+        VisitDay visitDay = new VisitDay(specialWeekday);
+        String menus = "양송이수프-1,제로콜라-2";
+        ChristmasEvent christmasEvent = new ChristmasEvent(new ChristmasMenu(menus));
+        int originalPrice = 6000 * 1 + 3000 * 2;
+        christmasEvent.buildEventMap(originalPrice, visitDay);
+
+        assertThat(christmasEvent.getEventMap()).containsOnlyKeys(SPECIAL_EVENT,
+                D_DAY_EVENT);
+    }
+
+    @Test
+    @DisplayName("스페셜 할인은 적용되고 디저트 메뉴도 있어서 평일 할인도 적용된다")
+    void special_weekday_menu() throws Exception {
+        String specialWeekday = "3";
+        VisitDay visitDay = new VisitDay(specialWeekday);
+        String menus = "양송이수프-1,제로콜라-2,초코케이크-1";
+        ChristmasEvent christmasEvent = new ChristmasEvent(new ChristmasMenu(menus));
+        int originalPrice = 6000 * 1 + 3000 * 2 + 15000 * 1;
+        christmasEvent.buildEventMap(originalPrice, visitDay);
+
+        assertThat(christmasEvent.getEventMap()).containsOnlyKeys(SPECIAL_EVENT, WEEKDAY_EVENT,
+                D_DAY_EVENT);
+    }
+
+    @Test
+    @DisplayName("스페셜 할인은 적용되고 디저트 메뉴도 있어서 평일 할인도 적용되고 gift이벤트도 적용된다")
+    void special_weekday_menu_gift() throws Exception {
+        String specialWeekday = "3";
+        VisitDay visitDay = new VisitDay(specialWeekday);
+        String menus = "양송이수프-1,제로콜라-2,초코케이크-10";
+        ChristmasEvent christmasEvent = new ChristmasEvent(new ChristmasMenu(menus));
+        int originalPrice = 6000 * 1 + 3000 * 2 + 15000 * 10;
+        christmasEvent.buildEventMap(originalPrice, visitDay);
+
+        assertThat(christmasEvent.getEventMap()).containsOnlyKeys(SPECIAL_EVENT, WEEKDAY_EVENT,
+                D_DAY_EVENT, GIFT_EVENT);
+    }
+
+    @Test
+    @DisplayName("메인 메뉴가 없어서 주말 이벤트가 적용되지 않는다")
+    void no_weekend_menu_gift() throws Exception {
+        String specialWeekday = "2";
+        VisitDay visitDay = new VisitDay(specialWeekday);
+        String menus = "양송이수프-1,제로콜라-2,초코케이크-1";
+        ChristmasEvent christmasEvent = new ChristmasEvent(new ChristmasMenu(menus));
+        int originalPrice = 6000 * 1 + 3000 * 2 + 15000 * 1;
+        christmasEvent.buildEventMap(originalPrice, visitDay);
+
+        assertThat(christmasEvent.getEventMap()).containsOnlyKeys(D_DAY_EVENT);
+    }
+
+    @Test
+    @DisplayName("메인 메뉴가 없어서 주말 이벤트가 적용되지 않는다")
+    void weekend_menu_gift() throws Exception {
+        String specialWeekday = "2";
+        VisitDay visitDay = new VisitDay(specialWeekday);
+        String menus = "양송이수프-1,제로콜라-2,초코케이크-1,티본스테이크-1";
+        ChristmasEvent christmasEvent = new ChristmasEvent(new ChristmasMenu(menus));
+        int originalPrice = 6000 * 1 + 3000 * 2 + 15000 * 1 + 55000 * 1;
+        christmasEvent.buildEventMap(originalPrice, visitDay);
+
+        assertThat(christmasEvent.getEventMap()).containsOnlyKeys(D_DAY_EVENT, WEEKEND_EVENT);
+    }
 }
